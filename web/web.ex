@@ -36,6 +36,12 @@ defmodule Fenix.Web do
 
       import Fenix.Router.Helpers
       import Fenix.Gettext
+
+      @primary_key {:id, :binary_id, autogenerate: true}
+      @foreign_key_type :binary_id
+      @derive {Poison.Encoder, except: [:__meta__]}
+      # @timestamps_opts [usec: false]
+
     end
   end
 

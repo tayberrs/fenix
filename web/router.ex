@@ -7,6 +7,10 @@ defmodule Fenix.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug Plug.Parsers, parsers: [:urlencoded, :multipart]
+    plug Plug.Parsers, parsers: [:urlencoded, :json],
+                       pass:  ["text/*"],
+                       json_decoder: Poison
   end
 
   pipeline :api do
