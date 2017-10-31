@@ -21,6 +21,11 @@ defmodule Fenix.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
+
+    resources "/khala", KhalaController, except: [:new, :edit]
+    resources "/castes", CasteController, except: [:new, :edit]
+    resources "/ranks", RankController, except: [:new, :edit]
+
   end
 
   # Other scopes may use custom stacks.
