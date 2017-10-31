@@ -32,3 +32,15 @@ Ready to run in production? Please [check our deployment guides](http://www.phoe
   * Supreme Principality(Commands an entire Legion/Auxilia, highest rank of a warrior without pursuing a government/Civil Career as well.)
   * Executor(Specialist Rank, Created for a certain task or Expedition - several legions and a personal command ship)
   * High Executor(Highest Military Rank - entire fleet of the Executor)
+
+## Judicator Ranks
+  * Consilur(Judge - Settles Civil Disputes)
+  * Instigator(Commander of a Police Force in a province)
+  * Tribune(Official elected to serve for a decade in the hall of power)
+  * High Tribune(Presiding Officer over the hall of Power - vote and break ties)
+  * Prefect(Governs a province)
+  * Regent(Governor of a Colony World)
+  * Preator/Prelate(Held power almost as great as the High Executor)
+  * Tribal Leader(Leader of Protoss Tribe)
+  * Admiral(High Commander of the Protoss Fleets)
+  * Heirarch/Matriach(Supreme Commander of the Protoss Protectorate)
