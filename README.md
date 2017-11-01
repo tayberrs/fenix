@@ -19,7 +19,7 @@ Ready to run in production? Please [check our deployment guides](http://www.phoe
   * Mailing list: http://groups.google.com/group/phoenix-talk
   * Source: https://github.com/phoenixframework/phoenix
 
-## Templar Ranks
+## Templar
   * Zealot
   * Evocati(Zealot Elites)
   * High Templar
@@ -33,7 +33,7 @@ Ready to run in production? Please [check our deployment guides](http://www.phoe
   * Executor(Specialist Rank, Created for a certain task or Expedition - several legions and a personal command ship)
   * High Executor(Highest Military Rank - entire fleet of the Executor)
 
-## Judicator Ranks
+## Judicator?
   * Consilur(Judge - Settles Civil Disputes)
   * Instigator(Commander of a Police Force in a province)
   * Tribune(Official elected to serve for a decade in the hall of power)

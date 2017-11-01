@@ -16,12 +16,42 @@ defmodule Fenix.DatabaseSeeder do
   @archives %{
     :static => %{
       {Caste, [:name]} => [
+        # internal monitoring
         ["Judicator"],
+        # generic
         ["Templar"],
-        ["Khalai"]
+        # internal building
+        ["Khalai"],
+        # specialized
+        ["Purifier"]
+      ],
+      {Rank, [:name, :hierarchy]} => [
+        # 1s
+        ["Zealot", 1],
+        ["Phase Apprentice", 1],
+        ["Evocati", 2],
+        ["Phase Smith", 2],
+        ["High Templar", 3],
+        ["Centurion", 4],
+        ["Legionary", 5],
+        ["Consilur", 6],
+        # 10s
+        ["Instigator", 10],
+        ["Vicarior", 11],
+        ["Primarch", 12],
+        ["Tribune", 12],
+        ["Principality", 13],
+        ["Prefect", 14],
+        ["Regent", 15],
+        # 100s
+        ["Preator", 100],
+        ["Executor", 101],
+        ["Admiral", 101],
+        # hierarch
+        ["Hierarch", 1000],
       ]
     },
-    :dynamic => %{}
+    :dynamic => %{},
   }
 
   @doc """

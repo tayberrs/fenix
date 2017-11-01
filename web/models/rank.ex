@@ -3,7 +3,7 @@ defmodule Fenix.Rank do
 
   schema "ranks" do
     field :name, :string
-    belongs_to :caste, Fenix.Caste
+    field :hierarchy, :integer
 
     timestamps()
   end
@@ -13,7 +13,7 @@ defmodule Fenix.Rank do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:name])
-    |> validate_required([:name])
+    |> cast(params, [:name, :hierarchy])
+    |> validate_required([:name, :hierarchy])
   end
 end
