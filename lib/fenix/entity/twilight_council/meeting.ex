@@ -1,4 +1,9 @@
 defmodule Fenix.Entity.TwilightCouncil.Meeting do
+  @moduledoc """
+  For now the start time will just be filled in at creation time, roadmap is to schedule meetings
+  in the future.
+  """
+
   use Fenix.Entity.Schema
   import Ecto.Changeset
 
@@ -6,6 +11,8 @@ defmodule Fenix.Entity.TwilightCouncil.Meeting do
 
   schema "meetings" do
     field(:start_time, :utc_datetime)
+    field(:deleted, :boolean, default: false)
+
     embeds_one(:context, MeetingContext)
 
     timestamps(type: :utc_datetime)
@@ -14,8 +21,8 @@ defmodule Fenix.Entity.TwilightCouncil.Meeting do
   @doc false
   def changeset(meeting, attrs) do
     meeting
-    |> cast(attrs, [:start_time])
-    |> validate_required([:start_time])
+    |> cast(attrs, [])
+    |> put_change(:start_time, DateTime.utc_now() |> DateTime.truncate(:second))
     |> cast_embed(:context, required: true)
   end
 end

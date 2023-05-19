@@ -1,0 +1,26 @@
+<div>
+  <h2><%= @title %></h2>
+
+  <.form
+    let={f}
+    for={@changeset}
+    id="meeting-form"
+    phx-target={@myself}
+    phx-change="validate"
+    phx-submit="save">
+
+    <%= inputs_for f, :context, fn ff -> %>
+        <%= label ff, :name %>
+        <%= text_input ff, :name, placeholder: "En taro Adun!" %>
+        <%= error_tag ff, :name %>
+
+        <%= label ff, :description %>
+        <%= text_input ff, :description, placeholder: "I fear no enemy. For the Khala is my strength. I fear not death. For our strength is eternal." %>
+        <%= error_tag ff, :description %>
+    <% end %>
+
+    <div>
+      <%= submit "Save", phx_disable_with: "Saving..." %>
+    </div>
+  </.form>
+</div>
