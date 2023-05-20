@@ -1,0 +1,31 @@
+<h1>Show Protoss</h1>
+
+<%= if @live_action in [:edit] do %>
+  <.modal return_to={Routes.protoss_show_path(@socket, :show, @protoss)}>
+    <.live_component
+      module={FenixWeb.ProtossLive.FormComponent}
+      id={@protoss.id}
+      title={@page_title}
+      action={@live_action}
+      protoss={@protoss}
+      return_to={Routes.protoss_show_path(@socket, :show, @protoss)}
+    />
+  </.modal>
+<% end %>
+
+<ul>
+
+  <li>
+    <strong>Faction:</strong>
+    <%= @protoss.faction %>
+  </li>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @protoss.detail.name %>
+  </li>
+
+</ul>
+
+<span><%= live_patch "Edit", to: Routes.protoss_index_path(@socket, :edit, @protoss), class: "button" %></span> |
+<span><%= live_redirect "Back", to: Routes.protoss_index_path(@socket, :index) %></span>
