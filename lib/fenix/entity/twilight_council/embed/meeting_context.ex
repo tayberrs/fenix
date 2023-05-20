@@ -8,8 +8,6 @@ defmodule Fenix.Entity.TwilightCouncil.Embed.MeetingContext do
     field(:end_time, :integer)
     field(:name, :string)
     field(:description, :string)
-
-    timestamps(type: :utc_datetime)
   end
 
   @doc false
