@@ -38,6 +38,19 @@ defmodule Fenix.Shared do
   def get_protoss!(id), do: Repo.get!(Protoss, id)
 
   @doc """
+  This is actually domain logic instead of a data concern but for now leaving it here and should
+  move when we actually do domain expansion.
+
+  Available here means when not already participating in a meeting atm ..
+  """
+  def get_available_protoss() do
+    Protoss
+    |> order_by(fragment("RANDOM()"))
+    |> limit(1)
+    |> Repo.one()
+  end
+
+  @doc """
   Creates a protoss.
 
   ## Examples

@@ -14,6 +14,7 @@ defmodule Fenix.Repo.Migrations.CreateProtoss do
     create(index(:protoss, [:deleted], where: "deleted = false"))
 
     execute("CREATE extension if not exists pg_trgm;")
+
     execute(
       "CREATE INDEX protoss_detail_name ON protoss USING GIN ((detail->>'name') gin_trgm_ops);"
     )

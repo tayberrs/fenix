@@ -8,23 +8,25 @@
       title={@page_title}
       action={@live_action}
       meeting={@meeting}
+      attendee={@attendee}
       return_to={Routes.meeting_show_path(@socket, :show, @meeting)}
     />
   </.modal>
 <% end %>
 
-<ul>
+  <h3>Details:</h3>
+  <strong>Start Time:</strong>
+  <%= @meeting.start_time %>
+  <strong>Name:</strong>
+  <%= @meeting.context.name %>
+  <strong>Description:</strong>
+  <%= @meeting.context.description %>
 
-  <li>
-    <strong>Start Time:</strong>
-    <%= @meeting.start_time %>
-    <strong>Name:</strong>
-    <%= @meeting.context.name %>
-    <strong>Description:</strong>
-    <%= @meeting.context.description %>
-  </li>
-
-</ul>
+  <h3>Attendees:</h3>
+  <li><strong><%= @attendee.detail.name %></strong></li>
+  <%= for name <- @attendees do %>
+    <li><%= name %></li>
+  <% end %>
 
 <span><%= live_patch "Edit", to: Routes.meeting_index_path(@socket, :edit, @meeting), class: "button" %></span> |
 <span><%= live_redirect "Back", to: Routes.meeting_index_path(@socket, :index) %></span>

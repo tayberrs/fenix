@@ -14,6 +14,7 @@ defmodule Fenix.Application do
       FenixWeb.Telemetry,
       # Start the PubSub system
       {Phoenix.PubSub, name: Fenix.PubSub},
+      FenixWeb.Presence,
       # Start the Endpoint (http/https)
       FenixWeb.Endpoint
       # Start a worker by calling: Fenix.Worker.start_link(arg)
