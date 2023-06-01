@@ -27,12 +27,35 @@ import {LiveSocket} from "phoenix_live_view"
 import topbar from "../vendor/topbar"
 
 let csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content")
-let liveSocket = new LiveSocket("/live", Socket, {params: {_csrf_token: csrfToken}})
+let Hooks = {}
+
+var localStream
+async function initStream() {
+    try {
+      // Gets our local media from the browser and stores it as a const, stream.
+      const stream = await navigator.mediaDevices.getUserMedia({audio: true, video: true, width: "1280"})
+      // Stores our stream in the global constant, localStream.
+      localStream = stream
+      // Sets our local video element to stream from the user's webcam (stream).
+      document.getElementById("attendee-video").srcObject = stream
+    } catch (e) {
+      console.log(e)
+    }
+}
+
+Hooks.JoinCall = {
+    mounted() {
+      initStream()
+    }
+}
+
+let liveSocket = new LiveSocket("/live", Socket, {hooks: Hooks, params: {_csrf_token: csrfToken}})
 
 // Show progress bar on live navigation and form submits
 topbar.config({barColors: {0: "#29d"}, shadowColor: "rgba(0, 0, 0, .3)"})
 window.addEventListener("phx:page-loading-start", info => topbar.show())
 window.addEventListener("phx:page-loading-stop", info => topbar.hide())
+window.addEventListener("phx:page-loading-start", info => NProgress.start())
 
 // connect if there are any LiveViews on the page
 liveSocket.connect()

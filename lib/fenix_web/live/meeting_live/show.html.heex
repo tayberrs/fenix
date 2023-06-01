@@ -28,5 +28,10 @@
     <li><%= name %></li>
   <% end %>
 
+<div>
+  <video id="attendee-video" playsinline autoplay muted width="600"></video>
+</div>
+
+<span><button id="hook-JoinCall", class="button" phx-hook="JoinCall">Join Call</button></span> |
 <span><%= live_patch "Edit", to: Routes.meeting_index_path(@socket, :edit, @meeting), class: "button" %></span> |
 <span><%= live_redirect "Back", to: Routes.meeting_index_path(@socket, :index) %></span>
