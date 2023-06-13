@@ -18,6 +18,20 @@ defmodule FenixWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+
+    scope "/meetings" do
+      live "/", MeetingLive.Index, :index
+      live "/new", MeetingLive.Index, :new
+      live "/:id", MeetingLive.Show, :show
+      live "/:id/edit", MeetingLive.Index, :edit
+    end
+
+    scope "/protoss" do
+      live "/", ProtossLive.Index, :index
+      live "/new", ProtossLive.Index, :new
+      live "/:id", ProtossLive.Show, :show
+      live "/:id/edit", ProtossLive.Index, :edit
+    end
   end
 
   # Other scopes may use custom stacks.

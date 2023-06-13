@@ -118,3 +118,7 @@
   0% { opacity: 1; }
   100% { opacity: 0; }
 }
+
+#attendee-video {
+  transform: rotateY(180deg);
+}

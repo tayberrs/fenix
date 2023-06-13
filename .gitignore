@@ -32,4 +32,6 @@ fenix-*.tar
 npm-debug.log
 /assets/node_modules/
 
-.ds_store
+.DS_Store
+.elixir_ls/
+/config/*.secret.exs
