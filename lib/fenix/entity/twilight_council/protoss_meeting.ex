@@ -10,6 +10,7 @@ defmodule Fenix.Entity.TwilightCouncil.ProtossMeeting do
   alias Fenix.Entity.TwilightCouncil.Meeting
 
   schema "protoss_meetings" do
+    field(:capacity, Ecto.Enum, values: [creator: 1, attendee: 2])
     field(:deleted, :boolean, default: false)
 
     belongs_to(:protoss_id, Protoss)

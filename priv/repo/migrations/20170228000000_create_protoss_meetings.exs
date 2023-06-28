@@ -8,6 +8,7 @@ defmodule Fenix.Repo.Migrations.CreateProtossMeetings do
   def up do
     create table(:protoss_meetings, primary_key: false) do
       add(:id, :uuid, primary_key: true)
+      add(:capacity, :integer, null: false)
       add(:context, :jsonb)
       add(:meta, :jsonb)
 
@@ -20,6 +21,7 @@ defmodule Fenix.Repo.Migrations.CreateProtossMeetings do
     end
 
     create(index(:protoss_meetings, [:deleted], where: "deleted = false"))
+    create(index(:protoss_meetings, [:capacity]))
     create(index(:protoss_meetings, [:protoss_id]))
     create(index(:protoss_meetings, [:meeting_id]))
 

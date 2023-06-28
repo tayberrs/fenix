@@ -6,7 +6,7 @@ defmodule Fenix.TwilightCouncil do
   import Ecto.Query, warn: false
   alias Fenix.Repo
 
-  alias Fenix.Entity.TwilightCouncil.Meeting
+  alias Fenix.Entity.TwilightCouncil.{ProtossMeeting, Meeting}
 
   @doc """
   Returns the list of meetings.
@@ -100,5 +100,21 @@ defmodule Fenix.TwilightCouncil do
   """
   def change_meeting(%Meeting{} = meeting, attrs \\ %{}) do
     Meeting.changeset(meeting, attrs)
+  end
+
+  @doc """
+  Only creator can add and only to the meeting they created.
+  """
+  def add_protoss_to_meeting(
+        %ProtossMeeting{meeting_id: meeting_id, capacity: :creator},
+        protoss_id
+      ) do
+    %ProtossMeeting{}
+    |> ProtossMeeting.changeset(%{
+      protoss_id: protoss_id,
+      capacity: :attendee,
+      meeting_id: meeting_id
+    })
+    |> Repo.insert()
   end
 end
