@@ -13,8 +13,8 @@ defmodule Fenix.Entity.TwilightCouncil.ProtossMeeting do
     field(:capacity, Ecto.Enum, values: [creator: 1, attendee: 2])
     field(:deleted, :boolean, default: false)
 
-    belongs_to(:protoss_id, Protoss)
-    belongs_to(:meeting_id, Meeting)
+    belongs_to(:protoss, Protoss)
+    belongs_to(:meeting, Meeting)
 
     timestamps(type: :utc_datetime)
   end
@@ -22,7 +22,7 @@ defmodule Fenix.Entity.TwilightCouncil.ProtossMeeting do
   @doc false
   def changeset(schema, attrs) do
     schema
-    |> cast(attrs, [:protoss_id, :meeting_id])
-    |> validate_required([:protoss_id, :meeting_id])
+    |> cast(attrs, [:protoss_id, :meeting_id, :capacity])
+    |> validate_required([:protoss_id, :meeting_id, :capacity])
   end
 end
