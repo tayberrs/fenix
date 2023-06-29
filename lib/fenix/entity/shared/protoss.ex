@@ -5,7 +5,10 @@ defmodule Fenix.Entity.Shared.Protoss do
   alias Fenix.Entity.Shared.Embed.ProtossDetail
 
   schema "protoss" do
-    field(:faction, :integer)
+    field(:faction, Ecto.Enum,
+      values: [khalai: 1, nerazim: 2, purifiers: 3, taldarim: 4, daelaam: 5]
+    )
+
     field(:deleted, :boolean, default: false)
 
     embeds_one(:detail, ProtossDetail)

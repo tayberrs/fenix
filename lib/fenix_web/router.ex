@@ -34,6 +34,15 @@ defmodule FenixWeb.Router do
     end
   end
 
+  scope "/api" do
+    pipe_through :api
+
+    forward "/graphiql", Absinthe.Plug.GraphiQL,
+      schema: FenixWeb.Schema,
+      interface: :simple,
+      context: %{pubsub: FenixWeb.Endpoint}
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", FenixWeb do
   #   pipe_through :api
