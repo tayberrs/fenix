@@ -4,6 +4,7 @@ defmodule FenixWeb.Schema.Meeting do
   alias FenixWeb.Resolvers.Meeting, as: MeetingResolver
 
   object :meeting do
+    field :id, non_null(:string)
     field :start_time, non_null(:datetime)
     field :context, non_null(:meeting_context), resolve: &MeetingResolver.meeting_context/3
     field :attendees, non_null(list_of(:meeting_attendee))

@@ -146,4 +146,13 @@ defmodule Fenix.TwilightCouncil do
     |> elem(0)
     |> Repo.transaction()
   end
+
+  def get_meeting_with_attendees(id) do
+    Meeting
+    |> join(:left, [m], _ in assoc(m, :protoss_meetings))
+    |> join(:left, [_, pm], _ in assoc(pm, :protoss))
+    |> where([m, pm, p], m.id == ^id and not m.deleted)
+    |> preload([_, pm, p], protoss_meetings: {pm, protoss: p})
+    |> Repo.one()
+  end
 end

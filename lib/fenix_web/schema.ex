@@ -18,6 +18,13 @@ defmodule FenixWeb.Schema do
     field :all_meetings, non_null(list_of(non_null(:meeting))) do
       resolve(&MeetingResolver.all_meetings/3)
     end
+
+    @desc "Get a meeting"
+    field :get_meeting, non_null(:meeting) do
+      arg(:meeting_id, non_null(:string))
+
+      resolve(&MeetingResolver.get_meeting/3)
+    end
   end
 
   mutation do

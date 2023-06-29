@@ -2,8 +2,21 @@ defmodule FenixWeb.Resolvers.Meeting do
   alias Fenix.TwilightCouncil
   alias Fenix.Entity.TwilightCouncil.{Meeting, ProtossMeeting}
 
+  alias FenixWeb.Resolvers.Shared
+
   def all_meetings(_root, _args, _info) do
     {:ok, TwilightCouncil.list_meetings()}
+  end
+
+  def get_meeting(_root, %{meeting_id: meeting_id}, _info) do
+    with {:ok, id} <- Shared.uuid_from_string(meeting_id),
+         schema when not is_nil(schema) <- TwilightCouncil.get_meeting_with_attendees(id) do
+      attendees = meeting_attendees(schema)
+      {:ok, Map.put(schema, :attendees, attendees)}
+    else
+      _ ->
+        {:error, "invalid argument"}
+    end
   end
 
   def create_meeting(
@@ -38,4 +51,13 @@ defmodule FenixWeb.Resolvers.Meeting do
   end
 
   def meeting_context(%Meeting{context: context}, _, _), do: {:ok, context}
+
+  def meeting_attendees(%Meeting{protoss_meetings: pms}) do
+    Enum.map(pms, fn %{protoss: p, capacity: c} ->
+      %{
+        capacity: "#{c}",
+        protoss: p
+      }
+    end)
+  end
 end

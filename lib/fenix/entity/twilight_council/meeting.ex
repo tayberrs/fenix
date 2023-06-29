@@ -7,6 +7,7 @@ defmodule Fenix.Entity.TwilightCouncil.Meeting do
   use Fenix.Entity.Schema
   import Ecto.Changeset
 
+  alias Fenix.Entity.TwilightCouncil.ProtossMeeting
   alias Fenix.Entity.TwilightCouncil.Embed.MeetingContext
 
   schema "meetings" do
@@ -14,6 +15,8 @@ defmodule Fenix.Entity.TwilightCouncil.Meeting do
     field(:deleted, :boolean, default: false)
 
     embeds_one(:context, MeetingContext)
+
+    has_many(:protoss_meetings, ProtossMeeting)
 
     timestamps(type: :utc_datetime)
   end
