@@ -32,6 +32,10 @@ defmodule FenixWeb.Router do
       live "/:id", ProtossLive.Show, :show
       live "/:id/edit", ProtossLive.Index, :edit
     end
+
+    scope "/lightsout" do
+      live "/", LightsOutLive.Board
+    end
   end
 
   scope "/api" do

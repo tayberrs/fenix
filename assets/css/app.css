@@ -1,6 +1,10 @@
 /* This file is for your main application CSS */
 @import "./phoenix.css";
 
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
 /* Alerts and form errors used by phx.new */
 .alert {
   padding: 15px;
@@ -121,4 +125,12 @@
 
 #attendee-video {
   transform: rotateY(180deg);
+}
+
+button {
+  @apply bg-stone-300;
+}
+
+button[data-on] {
+  @apply bg-rose-400;
 }
