@@ -16,9 +16,10 @@ defmodule Fenix.Application do
       {Phoenix.PubSub, name: Fenix.PubSub},
       FenixWeb.Presence,
       # Start the Endpoint (http/https)
-      FenixWeb.Endpoint
+      FenixWeb.Endpoint,
       # Start a worker by calling: Fenix.Worker.start_link(arg)
       # {Fenix.Worker, arg}
+      Fenix.Arbiter
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
