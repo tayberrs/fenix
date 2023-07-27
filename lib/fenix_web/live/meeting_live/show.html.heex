@@ -24,8 +24,8 @@
 
   <h3>Attendees:</h3>
   <li><strong><%= @attendee.detail.name %></strong></li>
-  <%= for name <- @attendees do %>
-    <li><%= name %></li>
+  <%= for {_, v} <- @attendees do %>
+    <li><%= v %></li>
   <% end %>
 
 <div>

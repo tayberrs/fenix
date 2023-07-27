@@ -4,8 +4,9 @@ defmodule Fenix.Shared do
   """
 
   import Ecto.Query, warn: false
-  alias Fenix.Repo
 
+  alias Fenix.Repo
+  alias Fenix.Arbiter
   alias Fenix.Entity.Shared.Protoss
 
   @doc """
@@ -43,10 +44,34 @@ defmodule Fenix.Shared do
 
   Available here means when not already participating in a meeting atm ..
   """
-  def get_available_protoss() do
+  def get_available_protoss_for_twlight_council() do
+    already_attending = Arbiter.get_twilight_council_current_attendees() |> IO.inspect()
+
+    if get_total_protoss_count() > length(already_attending) do
+      rp = get_random_protoss()
+
+      if rp.id in already_attending do
+        get_available_protoss_for_twlight_council()
+      else
+        {:ok, rp}
+      end
+    else
+      :error
+    end
+  end
+
+  def get_random_protoss() do
     Protoss
+    |> where([p], not p.deleted)
     |> order_by(fragment("RANDOM()"))
     |> limit(1)
+    |> Repo.one()
+  end
+
+  def get_total_protoss_count() do
+    Protoss
+    |> where([p], not p.deleted)
+    |> select([p], count(p.id))
     |> Repo.one()
   end
 
