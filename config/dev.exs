@@ -75,4 +75,8 @@ config :phoenix, :stacktrace_depth, 20
 # Initialize plugs at runtime for faster development compilation
 config :phoenix, :plug_init_mode, :runtime
 
+config :fenix,
+  rate_limit_max: 10,
+  rate_limit_interval: 20000
+
 import_config "dev.secret.exs"
