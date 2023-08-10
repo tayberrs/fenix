@@ -8,6 +8,7 @@ defmodule FenixWeb.Router do
     plug :put_root_layout, {FenixWeb.LayoutView, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug FenixWeb.RateLimitPlug
   end
 
   pipeline :api do

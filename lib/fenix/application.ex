@@ -17,6 +17,13 @@ defmodule Fenix.Application do
       FenixWeb.Presence,
       # Start the Endpoint (http/https)
       FenixWeb.Endpoint,
+      {Task.Supervisor, name: Fenix.TaskSupervisor},
+      {Fenix.Probius,
+       %{
+         limit: Application.get_env(:fenix, :rate_limit_max),
+         interval: Application.get_env(:fenix, :rate_limit_interval)
+       }},
+      {Fenix.Karax, %{limit: 10, interval: 5000}},
       # Start a worker by calling: Fenix.Worker.start_link(arg)
       # {Fenix.Worker, arg}
       Fenix.Arbiter
